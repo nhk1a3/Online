@@ -1,0 +1,85 @@
+﻿@using WearAndShare.Models
+@model List<WearAndShare.Models.Product>
+
+    <div class="row product__filter">
+        @foreach (var i in Model)
+        {
+            // 1. Chỉ định nghĩa các biến khác nhau một lần
+            var filterClass = i.discount > 0 ? "new-arrivals" : "hot-sales";
+            var finalPrice = i.price - ((i.price * i.discount) / 100);
+
+            // 2. Sử dụng một cấu trúc HTML duy nhất
+            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix @filterClass">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="@Url.Content(i.image)">
+                        @if (i.discount > 0)
+                        {
+                            <span class="label">Sale</span>
+                        }
+                        <ul class="product__hover">
+                            <li><a href="#"><img src="~/Content/img/icon/heart.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
+                            <li><a href="#"><img src="~/Content/img/icon/search.png" alt=""></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="@Url.Action("ProductDetail", "Shop", new { id = i.productId, category = i.categoryId })" class="nameProduct">@i.productName</a></h6>
+                        <a href="@Url.Action("AddToCart", "Cart", new { id = i.productId, @strURL = Request.Url.ToString() })" class="add-cart">+ Add To Cart</a>
+
+                        <!-- Phần Rating nên được hiển thị động -->
+                        <div class="rating">
+                            @* Ví dụ logic động cho rating (cần có i.Rating trong Model)
+                                @for(int star = 1; star <= 5; star++) {
+                                    if(star <= i.Rating) {
+                                        <i class="fa fa-star"></i>
+                                    } else {
+                                        <i class="fa fa-star-o"></i>
+                                    }
+                                }
+                            *@
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+
+                        <h5>
+                            @if (i.discount > 0)
+                            {
+                                // Hiển thị giá đã giảm và gạch ngang giá gốc
+                                <span>@string.Format("{0:#,###} Usd", finalPrice)</span>
+                                <span class="discount-price">@string.Format("{0:#,###} Usd", i.price)</span>
+                            }
+                            else
+                            {
+                                // Chỉ hiển thị giá gốc
+                                <span>@string.Format("{0:#,###} Usd", i.price)</span>
+                            }
+                        </h5>
+
+                        <!-- 4. Sửa lỗi ID tĩnh và nên hiển thị động -->
+                        <div class="product__color__select">
+                            @* Ví dụ logic động cho màu sắc (cần có i.AvailableColors trong Model)
+                                @foreach(var color in i.AvailableColors)
+                                {
+                                    <label class="@color.CssClass" for="color-@color.Id-@i.productId">
+                                        <input type="radio" name="color-select-@i.productId" id="color-@color.Id-@i.productId">
+                                    </label>
+                                }
+                            *@
+                            <label for="pc-1-@i.productId">
+                                <input type="radio" id="pc-1-@i.productId">
+                            </label>
+                            <label class="active black" for="pc-2-@i.productId">
+                                <input type="radio" id="pc-2-@i.productId">
+                            </label>
+                            <label class="grey" for="pc-3-@i.productId">
+                                <input type="radio" id="pc-3-@i.productId">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

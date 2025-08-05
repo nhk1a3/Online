@@ -1,0 +1,67 @@
+﻿@model List<WearAndShare.Models.Feedback>
+@using WearAndShare.Models
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashBoard.cshtml";
+    var currentUser = Session["infoAdmin"] as Member;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card" style="margin-bottom:25px;">
+                <div class="card-body">
+                    <h4 class="card-title">Danh sách tin nhắn phản hồi</h4>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(x => x[0].FromUserName)
+                            </th>
+                            @*<th>
+                                    @Html.DisplayNameFor(x => x[0].ToUserName)
+                                </th>*@
+                            <th>
+                                @Html.DisplayNameFor(x => x[0].Message)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(x => x[0].Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(x => x[0].SendDate)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(x => item.FromUserName)
+                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(x => item.ToUserName)
+                                    </td>*@
+                                <td>
+                                    @Html.DisplayFor(x => item.Message)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => item.SendDate)
+                                </td>
+                                <td>
+                                    @if (item.FromUserName != currentUser.userName)
+                                    {
+                                        @Html.ActionLink("Phản hồi", "Reply", new { id = item.Id })
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

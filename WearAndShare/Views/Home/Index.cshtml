@@ -1,0 +1,470 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPublicPage.cshtml";
+}
+    @if (TempData["msgChangePassword"] != null)
+     {
+        <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                @TempData["msgChangePassword"]
+         </div>
+     }    
+    @if (TempData["msgChangePasswordFailed"] != null)
+     {
+            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @TempData["msgChangePasswordFailed"]
+            </div>
+     }
+    @if (TempData["msgEditProfieFailed"] != null)
+     {
+            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @TempData["msgEditProfieFailed"]
+            </div>
+     }
+    @if (TempData["msgDeleteOrder"] != null)
+     {
+        <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                @TempData["msgDeleteOrder"]
+         </div>
+     }
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+       <div class="hero__items set-bg" 
+     data-setbg="@Url.Content("~/Content/img/banner/bn1.jpg")" 
+     style="background-size: contain !important; background-position: center; height: 700px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-7 col-md-8">
+                <div class="hero__text">
+                    <h6 style="color: white;">Quần áo thời trang cũ</h6>
+                    <h2 style="color: white;">Quần áo ký gửi shop</h2>
+                    <p style="color: white;">
+                        Các sản phẩm thời trang thanh lý giá rẻ, phù hợp với phong cách thời trang ký gửi.
+                    </p>
+                    <a href="~/Shop/ProductList" class="primary-btn">Mua sắm ngay <span class="arrow_right"></span></a>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="hero__items set-bg" 
+     data-setbg="@Url.Content("~/Content/img/banner/bn2.jpg")" 
+     style="background-size: contain !important; background-position: center; height: 800px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-7 col-md-8">
+                <div class="hero__text">
+                    <h6 style="color: white;">Đồ thanh lý mùa hè</h6>
+                    <h2 style="color: white;">Bộ sưu tập thời trang thanh lý Xuân - Hè</h2>
+                    <p style="color: white;">
+                        Các sản phẩm thời trang thanh lý Xuân - Hè giá rẻ. Phù hợp với đi dự tiệc, dã ngoại mùa hè.
+                    </p>
+                    <a href="~/Shop/ProductList" class="primary-btn">Mua ngay <span class="arrow_right"></span></a>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- Banner Section Begin -->
+<section class="banner spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-4">
+                <div class="banner__item">
+                    <div class="banner__item__pic">
+                        <img src="~/Content/img/banner/banner-1.jpg" alt="">
+                    </div>
+                    <div class="banner__item__text">
+                      <h2>Sản phẩm áo khoác thanh lý</h2>
+                         <a href="~/Shop/ProductList">Mua ngay</a>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-lg-5">
+                 <div class="banner__item banner__item--middle">
+                     <div class="banner__item__pic">
+                         <img src="~/Content/img/banner/banner-2.jpg" alt="">
+                     </div>
+                     <div class="banner__item__text">
+                         <h2>Phụ kiện thời trang thanh lý</h2>
+                         <a href="~/Shop/ProductList">Mua ngay</a>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-lg-7">
+                 <div class="banner__item banner__item--last">
+                     <div class="banner__item__pic">
+                         <img src="~/Content/img/banner/banner-3.jpg" alt="">
+                     </div>
+                     <div class="banner__item__text">
+                         <h2>Giày thanh lý</h2>
+                         <a href="~/Shop/ProductList">Mua ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Section End -->
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="filter__controls">
+               <li class="active" data-filter="*">Sản phẩm đang bán</li>
+                     <li data-filter=".new-arrivals">Hàng mới về</li>
+                     <li data-filter=".hot-sales">Giảm giá hấp dẫn</li>
+                </ul>
+            </div>
+        </div>
+        @Html.Action("ProductHome", "Home")
+    </div>
+</section>
+<!-- Product Section End -->
+<!-- Categories Section Begin -->
+<section class="categories spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="categories__text">
+                    <h2>Quần áo Hot <br /> <span>Bộ sưu tập giày</span> <br /> Phụ kiện</h2>
+                 </div>
+             </div>
+             <div class="col-lg-4">
+                 <div class="categories__hot__deal">
+                     <img src="~/Content/img/product-sale.png" alt="">
+                     <div class="hot__deal__sticker">
+                         <span>Bán</span>
+                         <h5>29,99 Usd</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <div class="categories__deal__countdown">
+                    <span>Ưu đãi của tuần</span>
+                     <h2>Túi đeo ngực nhiều túi màu đen</h2>
+                     <div class="categories__deal__countdown__timer" id="countdown">
+                         <div class="cd-item">
+                             <span>3</span>
+                             <p>Ngày</p>
+                         </div>
+                         <div class="cd-item">
+                             <span>1</span>
+                             <p>Giờ</p>
+                         </div>
+                         <div class="cd-item">
+                             <span>50</span>
+                             <p>Phút</p>
+                         </div>
+                         <div class="cd-item">
+                             <span>18</span>
+                             <p>Giây</p>
+                         </div>
+                     </div>
+                     <a href="~/Shop/ProductList" class="primary-btn">Mua ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+<!-- Instagram Section Begin -->
+<section class="instagram spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="instagram__pic">
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-1.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-2.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-3.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-4.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-5.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-6.jpg")></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="instagram__text">
+                    <h2>Instagram</h2>
+                    <p>
+                        Đến với shop đồ cũ để trải nghiệm các sản phẩm thời trang giá cả hợp lý.
+                    </p>
+                    <h3>#Thời_trang_nam</h3>
+                    <h3>#Thời_trang_nữ</h3>
+                    <h3>#Phụ_kiện_thời_trang</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Instagram Section End -->
+<!-- Latest Blog Section Begin -->
+<section class="latest spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Tin mới nhất</span>
+                    <h2 style=" position: relative; left: 58px;">Xu hướng mua sắm các sản phẩm thanh lý <span style="display: inline; position: relative; left: 288px;"><a href="~/Article/ArticleList" style=" color: black;">Read All</a></span></h2>
+                </div>
+            </div>
+        </div>
+     
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPublicPage.cshtml";
+}
+    @if (TempData["msgChangePassword"] != null)
+     {
+        <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                @TempData["msgChangePassword"]
+         </div>
+     }    
+    @if (TempData["msgChangePasswordFailed"] != null)
+     {
+            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @TempData["msgChangePasswordFailed"]
+            </div>
+     }
+    @if (TempData["msgEditProfieFailed"] != null)
+     {
+            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @TempData["msgEditProfieFailed"]
+            </div>
+     }
+    @if (TempData["msgDeleteOrder"] != null)
+     {
+        <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                @TempData["msgDeleteOrder"]
+         </div>
+     }
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+       <div class="hero__items set-bg" 
+     data-setbg="@Url.Content("~/Content/img/banner/bn1.jpg")" 
+     style="background-size: contain !important; background-position: center; height: 700px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-7 col-md-8">
+                <div class="hero__text">
+                    <h6 style="color: white;">Quần áo thời trang cũ</h6>
+                    <h2 style="color: white;">Quần áo ký gửi shop</h2>
+                    <p style="color: white;">
+                        Các sản phẩm thời trang thanh lý giá rẻ, phù hợp với phong cách thời trang ký gửi.
+                    </p>
+                    <a href="~/Shop/ProductList" class="primary-btn">Mua sắm ngay <span class="arrow_right"></span></a>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="hero__items set-bg" 
+     data-setbg="@Url.Content("~/Content/img/banner/bn2.jpg")" 
+     style="background-size: contain !important; background-position: center; height: 800px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-7 col-md-8">
+                <div class="hero__text">
+                    <h6 style="color: white;">Đồ thanh lý mùa hè</h6>
+                    <h2 style="color: white;">Bộ sưu tập thời trang thanh lý Xuân - Hè</h2>
+                    <p style="color: white;">
+                        Các sản phẩm thời trang thanh lý Xuân - Hè giá rẻ. Phù hợp với đi dự tiệc, dã ngoại mùa hè.
+                    </p>
+                    <a href="~/Shop/ProductList" class="primary-btn">Mua ngay <span class="arrow_right"></span></a>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- Banner Section Begin -->
+<section class="banner spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-4">
+                <div class="banner__item">
+                    <div class="banner__item__pic">
+                        <img src="~/Content/img/banner/banner-1.jpg" alt="">
+                    </div>
+                    <div class="banner__item__text">
+                      <h2>Sản phẩm áo khoác thanh lý</h2>
+                         <a href="~/Shop/ProductList">Mua ngay</a>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-lg-5">
+                 <div class="banner__item banner__item--middle">
+                     <div class="banner__item__pic">
+                         <img src="~/Content/img/banner/banner-2.jpg" alt="">
+                     </div>
+                     <div class="banner__item__text">
+                         <h2>Phụ kiện thời trang thanh lý</h2>
+                         <a href="~/Shop/ProductList">Mua ngay</a>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-lg-7">
+                 <div class="banner__item banner__item--last">
+                     <div class="banner__item__pic">
+                         <img src="~/Content/img/banner/banner-3.jpg" alt="">
+                     </div>
+                     <div class="banner__item__text">
+                         <h2>Giày thanh lý</h2>
+                         <a href="~/Shop/ProductList">Mua ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Section End -->
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="filter__controls">
+               <li class="active" data-filter="*">Sản phẩm đang bán</li>
+                     <li data-filter=".new-arrivals">Hàng mới về</li>
+                     <li data-filter=".hot-sales">Giảm giá hấp dẫn</li>
+                </ul>
+            </div>
+        </div>
+        @Html.Action("ProductHome", "Home")
+    </div>
+</section>
+<!-- Product Section End -->
+<!-- Categories Section Begin -->
+<section class="categories spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="categories__text">
+                    <h2>Quần áo Hot <br /> <span>Bộ sưu tập giày</span> <br /> Phụ kiện</h2>
+                 </div>
+             </div>
+             <div class="col-lg-4">
+                 <div class="categories__hot__deal">
+                     <img src="~/Content/img/product-sale.png" alt="">
+                     <div class="hot__deal__sticker">
+                         <span>Bán</span>
+                         <h5>29,99 Usd</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <div class="categories__deal__countdown">
+                    <span>Ưu đãi của tuần</span>
+                     <h2>Túi đeo ngực nhiều túi màu đen</h2>
+                     <div class="categories__deal__countdown__timer" id="countdown">
+                         <div class="cd-item">
+                             <span>3</span>
+                             <p>Ngày</p>
+                         </div>
+                         <div class="cd-item">
+                             <span>1</span>
+                             <p>Giờ</p>
+                         </div>
+                         <div class="cd-item">
+                             <span>50</span>
+                             <p>Phút</p>
+                         </div>
+                         <div class="cd-item">
+                             <span>18</span>
+                             <p>Giây</p>
+                         </div>
+                     </div>
+                     <a href="~/Shop/ProductList" class="primary-btn">Mua ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+<!-- Instagram Section Begin -->
+<section class="instagram spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="instagram__pic">
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-1.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-2.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-3.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-4.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-5.jpg")></div>
+                    <div class="instagram__pic__item set-bg" data-setbg=@Url.Content("~/Content/img/instagram/instagram-6.jpg")></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="instagram__text">
+                    <h2>Instagram</h2>
+                    <p>
+                        Đến với shop đồ cũ để trải nghiệm các sản phẩm thời trang giá cả hợp lý.
+                    </p>
+                    <h3>#Thời_trang_nam</h3>
+                    <h3>#Thời_trang_nữ</h3>
+                    <h3>#Phụ_kiện_thời_trang</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Instagram Section End -->
+<!-- Latest Blog Section Begin -->
+<section class="latest spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Tin mới nhất</span>
+                    <h2 style=" position: relative; left: 58px;">Xu hướng mua sắm các sản phẩm thanh lý <span style="display: inline; position: relative; left: 288px;"><a href="~/Article/ArticleList" style=" color: black;">Read All</a></span></h2>
+                </div>
+            </div>
+        </div>
+        @Html.Action("ProductHome", "Home")
+    </div>
+</section>
+<!-- Latest Blog Section End -->
+
+    </div>
+</section>
+<!-- Latest Blog Section End -->

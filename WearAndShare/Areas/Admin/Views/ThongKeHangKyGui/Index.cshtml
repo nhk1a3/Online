@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashBoard.cshtml";
+}
+
+<div class="card-body">
+    <form method="get" action="@Url.Action("Index", "ThongKeHangKyGui")">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Tháng</label>
+                <select name="Thang" class="form-control">
+                    <option value="">-- Chọn tháng --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Năm</label>
+                <select name="Nam" class="form-control">
+                    <option value="">-- Chọn Năm --</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input style="margin-top:30px;" type="submit" class="form-control btn btn-info" value="Lọc" />
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <canvas id="chart-loi-nhuan" style="width:100%;max-width:600px"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <canvas id="chart-doanh-thu" style="width:100%;max-width:600px"></canvas>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        var labels = @Html.Raw(Json.Encode(ViewBag.Labels));
+        var data_loi_nhuan = @Html.Raw(Json.Encode(ViewBag.DataLoiNhuans));
+        var data_doanh_thu = @Html.Raw(Json.Encode(ViewBag.DataDoanhThus));
+        //var barColors = ["red", "green", "blue", "orange", "brown"];
+
+        new Chart("chart-loi-nhuan", {
+            type: "horizontalBar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    //backgroundColor: barColors,
+                    data: data_loi_nhuan
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Biểu đồ lợi nhuận theo mặt hàng ký gửi"
+                },
+                responsive: true,
+                indexAxis: 'y'
+            }
+        });
+
+        new Chart("chart-doanh-thu", {
+            type: "horizontalBar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    //backgroundColor: barColors,
+                    data: data_doanh_thu
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Biểu đồ doanh thu theo mặt hàng ký gửi"
+                },
+                responsive: true,
+                indexAxis: 'y'
+            }
+        });
+    </script>
+}
